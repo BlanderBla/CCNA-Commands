@@ -1,0 +1,73 @@
+¿Qué es NAT?
+NAT — Network Address Translation
+Es una técnica utilizada en redes de computadoras para permitir que dispositivos en una red privada se comuniquen con dispositivos en una red pública, como Internet.
+
+Cuando un dispositivo en una red privada se comunica con un dispositivo en una red pública, NAT traduce la dirección IP privada del dispositivo en una dirección IP pública que puede ser entendida por los dispositivos en la red pública. Cuando se recibe una respuesta desde la red pública, NAT vuelve a traducir la dirección IP pública en la dirección IP privada correspondiente del dispositivo en la red privada.
+
+La traducción de direcciones de red es una forma efectiva de conservar las direcciones IP públicas limitadas disponibles y mejorar la seguridad de la red privada, ya que los dispositivos en la red privada no están directamente expuestos a Internet. NAT se utiliza ampliamente en routers y firewalls de red para permitir el acceso a Internet a dispositivos en redes privadas.
+
+Tipos de NAT
+	1. NAT estático: En este tipo de NAT, se mapea una dirección IP privada específica a una dirección IP pública fija. Este tipo de NAT se utiliza cuando se desea que un servidor en la red privada esté siempre disponible en una dirección IP pública específica.
+	2. NAT dinámico: En este tipo de NAT, se mapean las direcciones IP privadas de los dispositivos en la red privada a direcciones IP públicas que se asignan dinámicamente por un servidor NAT. Esto permite que varios dispositivos en la red privada se comuniquen con Internet a través de una dirección IP pública compartida.
+	3. NAT de sobrecarga: En este tipo de NAT se utiliza cuando se tiene una dirección IP pública limitada disponible y se desea permitir que varios dispositivos en la red privada se comuniquen con Internet a través de una única dirección IP pública. NAT de sobrecarga utiliza puertos TCP y UDP para distinguir entre diferentes conexiones de red privada que utilizan la misma dirección IP pública.
+
+-----------------------------
+-----------------------------
+
+PAT - Port Address Translation
+
+Es una técnica utilizada en redes de computadoras para permitir que varios dispositivos en una red privada se comuniquen con Internet a través de una dirección IP pública compartida. PAT es similar a NAT, pero además de traducir la dirección IP privada de un dispositivo en la red privada en una dirección IP pública, también cambia el número de puerto utilizado para la comunicación.
+
+Cuando un dispositivo en la red privada se comunica con Internet a través de PAT, el router de la red privada asigna un número de puerto único a la comunicación. Cuando se recibe una respuesta desde Internet, PAT utiliza el número de puerto asignado para identificar el dispositivo en la red privada que originó la comunicación y enruta la respuesta al dispositivo correspondiente.
+
+PAT permite que varios dispositivos en una red privada se comuniquen con Internet a través de una dirección IP pública compartida, lo que es útil cuando se tiene un número limitado de direcciones IP públicas disponibles. PAT se utiliza comúnmente en routers y firewalls de red para permitir el acceso a Internet a dispositivos en redes privadas.
+
+
+
+
+Dispositivo: Router
+
+Configurar NAT Estático:
+1. Crear entrada NAT estático
+	ip nat inside source static [Private-IP-Address] [Public-IP-Address]
+2. Configurar interfaz privada
+	interface [interface-id]
+	ip nat inside
+3. Configurar interfaz publica
+	interface [interface-id]
+	ip nat outside
+
+-----------------------------
+
+Dispositivo: Router
+
+Configurar NAT Dinámico:
+1. Se especifica la interfaz del lado público
+	interface [Interface-id-Public]
+	ip nat outside
+2. Se especifica la interfaz del lado privado
+	interface [Interface-ip-Privat]
+	ip nat inside
+3. Se configura un Pool de direcciones IP que se utilizará para hacer la traducción de direcciones en el lado privado
+	ip nat pool [Pool-name] [Start-Address] [End-Address] netmask [Subnet-Mask]
+4. Se crea una lista de acceso que especifica que direcciones IP del lado privado se van a traducir
+	access-list [#Access-list] { Permit/deny } [IP-Address] [Wildcard]
+5. Se configura NAT utilizando la lista de acceso y el pool de direcciones IP
+	ip nat inside source list [#Access-list] pool [Pool-name]
+
+-----------------------------
+
+Dispositivo: Router
+
+Configurar PAT o NAT con sobrecarga:
+1. Se especifica la interfaz del lado público
+	interface [Interface-id-Public]
+	ip nat outside
+2. Se especifica la interfaz del lado privado
+	interface [Interface-ip-Privat]
+	ip nat inside
+3. Se crea una lista de acceso que especifica que direcciones IP del lado privado se van a traducir
+	access-list 1 permit 192.168.1.0 0.0.0.255
+4. Se configura NAT utilizando la lista de acceso y el la interfaz outside
+	ip nat inside source list 1 interface [interface-id-Outside] overload
+

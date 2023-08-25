@@ -1,0 +1,38 @@
+¿Qué es EIGRP?
+
+EIGRP – Enhanced Interior Gateway Routing Protocol
+Es un protocolo de routing vector distancia avanzado desarrollado por Cisco Systems. EIGRP es una mejora de otro protocolo de routing de Cisco: el protocolo de routing de gateway interior (IGRP). EIGRP es compatible con varios protocolos de red, incluidos IPv4 e IPv6, y se puede configurar para funcionar en redes LAN y WAN. Es conocido por su eficiencia en la utilización de recursos de red, lo que lo hace ideal para redes de gran tamaño con muchos routers y subredes.
+
+Características de EIGRP
+- Algoritmo de actualización difusa
+- Establecimiento de adyacencias de vecinos
+- Protocolo de transporte confiable
+- Actualizaciones parciales y limitadas
+- Balanceo de carga de mismo costo o con distinto costo
+
+
+
+Dispositivo: Router y Switch L3
+enable
+configure terminal
+1. Habilitar protocolo EIGRP y configurar red EIGRP
+	router eigrp [autónomo]
+	eigrp router-id [IPv4-Address]
+	network [Network-address] [Wildcard-Mask]
+2. Configuración del ancho de banda
+	interface [interface-id]
+	bandwidth [#Bandwidth]            // Kbps
+3. Configurar el valor de la metrica de ancho de banda y retardo
+	metric weights 0 1 0 1 0 0
+4. Otros
+	no auto-summary                  // Desactiva la función de resumen automático de EIGRP en la red. Por defecto, EIGRP realiza un resumen automático de las rutas de los prefijos de red que se anuncian en la red, lo que significa que EIGRP anunciará sólo los prefijos de red que pertenecen a la dirección de clase de red principal de la red.
+	auto-summary                     // Activar el resumen automático de redes en el proceso de EIGRP.
+
+5. Verificar la configuración de EIGRP
+	show ip protocols
+	show ip eigrp neighbors
+	show ip route eigrp
+
+
+router eigrp 2012
+auto-summary

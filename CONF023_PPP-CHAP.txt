@@ -1,0 +1,27 @@
+¿Qué es PPP?
+PPP — Point-To-Point
+PPP se utiliza para establecer una conexión de red confiable y segura entre dos dispositivos, y proporciona características como la autenticación, el cifrado de datos y la compresión de datos. PPP es comúnmente utilizado en redes de acceso remoto, como conexiones a Internet a través de líneas telefónicas o conexiones inalámbricas.
+
+¿Qué es CHAP?
+CHAP — Challenge Handshake Authentication Protocol
+Es un protocolo de autenticación utilizado en redes de computadoras para verificar la identidad de un usuario o dispositivo. CHAP es un método de autenticación más seguro que el método PAP (Password Authentication Protocol), ya que utiliza un desafío (challenge) para autenticar al usuario. En lugar de enviar una contraseña en texto claro, CHAP envía un desafío aleatorio al usuario, quien debe responder con un valor calculado a partir del desafío y una clave secreta conocida solo por el usuario y el servidor de autenticación.
+Este proceso se repite varias veces durante la sesión para asegurar que la identidad del usuario se mantenga autenticada durante todo el tiempo de la conexión. CHAP se utiliza comúnmente en redes de acceso remoto, como conexiones a Internet a través de líneas telefónicas o conexiones inalámbricas, y es compatible con una amplia gama de dispositivos de red.
+
+
+Dispositivo: Router
+
+Primer dispositivo: D1
+	interface [interface-id]
+	encapsulation ppp           // Configurar la encapsulación del protocolo de la capa de enlace de datos selecionada
+	ppp authentication chap     // Habilita la autenticación CHAP
+	exit
+	username [hostname_D2] password [Password_shared]
+
+Segundo dispositivo: D2
+	enable
+	configure terminal
+	interface [interface-id]     // Interfaz conectada al otro dispositivo
+	encapsulation ppp
+	ppp authentication chap
+	exit
+	username [hostname_D1] password [Password_shared]

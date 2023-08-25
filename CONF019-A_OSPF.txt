@@ -1,0 +1,53 @@
+¿Qué es OSPF?
+OSPF — Open Shortest Path First
+
+Es un protocolo de enrutamiento de estado de enlace (link-state) utilizado en redes IP. OSPF se utiliza para calcular la ruta más corta entre dos puntos en una red y para propagar información de enrutamiento a través de la red.
+OSPF utiliza un algoritmo de estado de enlace para construir una base de datos de topología de red completa y precisa. Cada router en la red OSPF recopila información de sus vecinos y la utiliza para construir un mapa completo de la red.
+OSPF es un protocolo de enrutamiento avanzado y escalable que es adecuado para redes grandes y complejas. OSPF es compatible con redes que tienen múltiples rutas a un mismo destino y proporciona un camino más rápido de convergencia en caso de cambios en la topología de red.
+
+
+Dispositivos: Router
+1. Habilitar OSPF
+	router ospf [proceso] // Valor entre 1 - 65535
+2. Configurar router id
+	router-id [IPv4-address]
+3. Agregar una red a OSPF
+	network [IPv4-address] [Wildcard-Mask] area [id-area]
+3.5. [OPCIONAL] = Crear virtual link para unir areas 0 separadas
+	area [id-area] virtual-link [router-ID neighbor] [id-area neighbor]
+
+	Nota: Se utiliza para crear un enlace virtual en OSPF entre dos routers que se encuentran en áreas OSPF distintas.
+	"area [id-área]": Este parámetro especifica el identificador de la área OSPF en la que se va a crear el enlace virtual.
+	"virtual-link": Este parámetro indica que se va a crear un enlace virtual.
+	"[router-id-neighbor]": Este parámetro especifica el Router ID del router vecino con el que se va a crear el enlace virtual.
+	"<id-área-vecino>": Este parámetro especifica el identificador de la área OSPF del router vecino con el que se va a crear el enlace virtual.
+
+4. Verificar la configuración de OSPF
+show ip route ospf
+show ip protocols
+show ip ospf interface brief
+5. Otros
+	passive interface default             // Establece todas las interfaces en modo pasivo en OSPF. En modo pasivo, el router no envía paquetes de enrutamiento OSPF a través de la interfaz, pero aún recibe y procesa paquetes OSPF.
+	no passive-interface [interface-id]   // Habilita una interfaz específica para enviar paquetes de enrutamiento OSPF
+
+-----------------------------
+-----------------------------
+
+Dispositivos: Switch
+1. Habilitar Enrutamiento IP en Switch
+	ip routing
+2. Habilitar OSPF
+	router ospf [Process ID]
+3. Configurar router id
+	router-id [IPv4-address]
+4. Agregar una red a OSPF
+	network [IPv4-address] [Wildcard-Mask] area [id-area]
+4.5. [OPCIONAL] = Crear virtual link para unir areas 0 separadas
+	area [id-area] virtual-link [router-ID neighbor] [id-area neighbor]
+5. Verificar la configuración de OSPF
+	show ip route ospf
+6. Otros
+	passive interface default
+	no passive-interface [interface-id]
+	no passive-interface vlan [vlan-id]
+

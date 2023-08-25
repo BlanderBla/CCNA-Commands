@@ -1,0 +1,9 @@
+R1
+ipv6 router eigrp 1234
+interface se1/0
+ipv6 eigrp 1234
+
+R2
+ipv6 router eigrp 1234
+interface se1/1
+ipv6 eigrp 1234

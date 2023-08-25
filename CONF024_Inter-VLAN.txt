@@ -1,0 +1,25 @@
+Router on a Stick
+Es una configuración de red en la que un solo router se conecta a múltiples redes VLAN a través de un solo puerto de troncal de switch mediante el uso de subinterfaces. En otras palabras, el router utiliza un solo puerto para enrutar el tráfico entre varias redes VLAN.
+
+1. Configuración del puerto troncal en el switch
+	Dispositivo: Switch
+		interface [interface-id]
+		switchport mode trunk
+2. Creación de subinterfaces en el router para cada VLAN
+	Dispositivo: Router
+		interface [interface-id].[VLAN_ID]
+		encapsulation dot1q [VLAN_ID]
+		ip address [IP-Address] [SubnetMask]
+3. Configuración de enrutamiento Inter-VLAN en el router
+	Dispositivo: Router
+		interface [interface-id]
+		no shutdown
+		exit
+		interface <nombre_de_la_subinterfaz_predeterminada>
+		encapsulation dot1q <VLAN_ID_predeterminada>
+		ip address <dirección_IP_predeterminada> <máscara_de_red>
+		no shutdown
+		exit
+		router ip routing
+4. Configuración de la puerta de enlace predeterminada en los dispositivos finales:
+	<dispositivo_final>(config)# ip default-gateway <dirección_IP_del_router>

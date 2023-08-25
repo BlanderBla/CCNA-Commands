@@ -1,0 +1,26 @@
+¿Qué es HSRP?
+HSRP — Hot Standby Router Protocol. 
+Es un protocolo de enrutamiento de redundancia de gateway predeterminado desarrollado por Cisco Systems. HSRP se utiliza para proporcionar redundancia de gateway predeterminado en redes de múltiples dispositivos.
+En una configuración HSRP típica, varios routers Cisco están conectados a la misma red LAN y actúan como gateways predeterminados para los hosts en la red. Uno de los routers se designa como el router activo, que maneja todo el tráfico de la red, mientras que otro router se designa como el router en espera, que monitorea constantemente al router activo y toma el control si el router activo falla o se desconecta.
+HSRP proporciona una solución de alta disponibilidad para las redes empresariales, ya que permite que los routers conmuten automáticamente las funciones de gateway predeterminado sin la intervención del administrador de la red.
+
+
+Dispositivo: Router
+
+Router Activo
+	vlan [vlan-id] 
+	name [vlan-name]
+	interface vlan [vlan]
+	ip address [IPv4-Address] [Mask]
+	no shutdown
+	standby [HSRP_Group] ip [IP-compartida]
+	standby [HSRP_Group] priority [0-256]    // Entre más alto, tiene mayor preferencia
+	standby [HSRP_Group] preempt             // Para que cuando vuelva a estar en línea recupere su rol
+
+Router En-Espera
+	vlan [vlan-id] 
+	name [vlan-name]
+	interface vlan [vlan]
+	ip address [IPv4-Address] [Mask]
+	no shutdown
+	standby [HSRP_Group] ip [IP-compartida]

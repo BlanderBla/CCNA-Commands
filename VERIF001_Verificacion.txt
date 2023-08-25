@@ -1,0 +1,54 @@
+BASIC VERIFICATION
+Muestra la configuración actual del dispositivo
+	show running config
+Muestra la configuración en memoria no volatil o configuración de inicio
+	show startup-config
+Muestra información detallada sobre las interfaces de red del dispositivo
+	show interface
+Muestra información específica de las interfaces de red que están configuradas con direcciones IP
+	show ip interface
+Muestra una lista resumida de las interfaces de red configuradas con direcciones IP
+	show ip interface brief
+Muestra información detallada sobre los protocolos de enrutamiento que están configurados en el dispositivo
+	show protocols
+Muestra información detallada sobre los controladores de hardware del dispositivo
+	show controllers
+Muestra la version del dispositivo
+	show version
+Muestra ***
+	show flash
+
+-----------------------------
+-----------------------------
+
+CDP VERIFICATION
+Muestra el estado general del protocolo CDP en el dispositivo
+	show cdp
+Muestra una lista de vecinos de red descubiertos por CDP, incluyendo su dirección IP, el nombre de la interfaz conectada y la plataforma del vecino.
+	show cdp neighbor
+Muestra información detallada sobre los vecinos de red descubiertos por CDP
+	show cdp neighbor details
+Muestra información detallada sobre un vecino de red específico descubierto por CDP
+	show cdp entry * protocol
+Muestra información detallada sobre un vecino de red específico descubierto por CDP
+	show cdp entry * version
+Muestra estadísticas de tráfico de CDP
+	show cdp traffic
+Muestra el estado de CDP en una interfaz de red específica
+	show cdp interface
+
+-----------------------------
+-----------------------------
+
+TELNET VERIFICATION
+Muestra una lista de todas las sesiones de usuario activas en el dispositivo en tiempo real
+	show sessions
+Muestra una lista de todos los usuarios conectados actualmente al dispositivo, incluyendo su nombre de usuario, el tipo de conexión, la dirección IP del usuario, el estado de la sesión y la hora de inicio de la sesión.
+	show users
+
+-----------------------------
+-----------------------------
+
+RIP VERIFICATION
+	show ip route
+	show ip protocols

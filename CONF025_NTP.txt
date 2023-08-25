@@ -1,0 +1,7 @@
+Router:	
+1. Configurar la direccion IP del servidor NTP
+	ntp server [IP-Server-NTP]
+2. Configura la zona horaria del router 
+	clock timezone <nombre de la zona> <desplazamiento del UTC>	
+3. Configurar stratum
+	ntp stratum [#]
