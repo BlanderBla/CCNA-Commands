@@ -1,0 +1,18 @@
+DTP — Dynamic Trunking Protocol
+
+Es un protocolo de red utilizado en redes de conmutación Ethernet para permitir que los dispositivos de red negocen y configuren automáticamente la conexión de enlace troncal (trunk) entre ellos.
+
+Los enlaces troncales son conexiones de red que permiten el tráfico de varias VLANs a través de una sola conexión física, lo que permite una mejor utilización de los recursos de red y una mayor flexibilidad en la configuración de la red. DTP permite que los dispositivos de red, como los switches, negocien y configuren automáticamente la conexión de enlace troncal, lo que simplifica la configuración y gestión de la red.
+Dispositivos: Switch
+
+Comando DTP:
+	switchport mode { access | dynamic { auto | desirable } | trunk }
+
+1. Habilitar DTP en un puerto especifico
+	switchport mode dynamic desirable
+2. Conigurar puerto como troncal automatico
+	switchport mode dynamic auto
+3. Forzar un puerto para que siempre sea troncal
+	switchport mode trunk
+4. Deshabilitar DTP en un puerto especifico
+	switchport nonegotiate

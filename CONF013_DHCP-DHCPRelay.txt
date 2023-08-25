@@ -1,0 +1,41 @@
+Dispositivo: Router
+
+1. Configuración de la interfaz del router
+	interface [interface]
+	ip address [IPv4-address] [subnet-mask]
+	no shutdown
+2. Creación del DHCP Pool
+	enable
+	configure terminal					
+	ip dhcp pool [name_pool]			         // 
+	network [IPv4-address] [subnet-mask]	 //	Define red completa
+	default-router [IP-router]			       //	IP del dispositivo que los enlaza a Internet (Router) (Depende de la red a la que estes conectado)
+	dns-server [IP-dns]				             //	
+	lease	[dia] [horas] [minutos]			     //	Cuanto tiempo concedes la dirección IP
+	exit
+3. Excluir direcciones IP del DHCP Pool
+	ip dhcp excluded-address [IPv4_1] [IPv_n]
+4. Asignamos direcciones IP
+	Vamos al dispositivo y obtenemos la dirección IP
+5. Comandos de verificación
+	show ip dhcp binding
+	show ip dhcp pool
+	show ip dhcp server statistics
+	show ip dhcp conflict
+	clear ip dhcp conflict
+
+
+
+DHCP Relay
+Configurar DHCP Relay en dispositivo de retransmisión
+	enable
+	configure terminal
+	interface [interface]
+	ip helper-address [IP-ServidorDHCP]
+
+2. Comandos de verificación
+	show ip dhcp binding
+	show ip dhcp pool
+	show ip dhcp server statistics
+	show ip dhcp conflict
+	clear ip dhcp conflict

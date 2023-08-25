@@ -1,0 +1,24 @@
+1. Implementación de seguridad de los puertos
+	1.1. Asegurar los puertos sin utilizar
+		interface [interface-id]
+		shutdown
+	1.2. Mitigación de ataques por saturación de direcciones MAC
+		switchport port-security maximum [#]
+	1.3. Habilitar la seguridad del puerto
+		switchport port-security
+	1.4. Limitar y aprender MAC Addresses
+		switchport port-security maximum [#]
+		switchport port-security mac-address sticky
+	1.5. Vencimiento de la seguridad del puerto
+		switchport port-security aging [time] [minutes]
+	1.6. Puertos en Estado error-disabled
+		errdisable recovery cause psecure-violation
+	1.7. Verificar la seguridad del puerto
+		show port-security interface [interface-id]
+2. Mitigación de ataques de VLAN
+	vlan vlan-id
+	name vlan-name
+3. Mitigación de ataques de DHCP
+	ip dhcp snooping
+4. Mitigación de ataques de STP
+	spanning-tree portfast bpduguard default

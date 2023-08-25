@@ -1,0 +1,35 @@
+1. CONFIGURAR VLAN
+	enable
+	configure terminal
+	vlan [vlan-id]
+	name [vlan-name]
+	end
+
+2. ASIGNACIÓN DE PUERTOS
+	enable
+	configure terminal
+	interface [interface-id]
+	switchport mode access
+	switchport access vlan [vlan-id]
+	end
+
+3. CONFIGURAR VLAN DE VOZ
+	enable
+	configure terminal
+	vlan [vlan-id]
+	name [vlan-name]
+	interface [interface-id]
+	switchport mode access
+	switchport access vlan [vlan-id]
+	mls qos trust cos
+	switchport voice vlan [vlna-id]
+	end
+
+4. VERIFICACION DE LA VLAN
+	show vlan brief
+	show vlan id [vlan-id]
+	show vlan brief name [vlan-name]
+	show vlan brief summary
+
+5. ELIMINAR VLAN
+	no vlan [vlan-id]

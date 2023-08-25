@@ -1,0 +1,21 @@
+1. CONFIGURAR ENLACE TRONCAL PARA VLAN
+	enable
+	configure terminal
+	interface [interface-id]
+	switchport trunk encapsulation dot1q                   
+	switchport mode trunk    
+	switchport trunk native vlan [vlan-id]      // Especifique una VLAN nativa
+	switchport trunk allowed vlan [vlan-list]   // Lista de VLAN que permitirá el enlace
+	switchport trunk pruning vlan none          // Allows all VLANS to be carried ober the trunk link
+	end
+
+2. VERIFICAR LA CONFIGURACION DE ENLACE TRONCAL
+	enable
+	show interface [interface] switchport
+
+3. RESTABLECIMIENTO DEL ENLACE TRONCAL AL ESTADO PREDETERMINADO
+	enable
+	configure terminal
+	interface [interface]
+	no switchport trunk allowed vlan
+	no switchport trunk native vlan

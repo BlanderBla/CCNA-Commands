@@ -1,0 +1,17 @@
+Cuando se está configurando o revisando el resultado de un comando show resulta muy molesta la interrupción que provocan los mensajes de logging de algunos sucesos estándar (p.e. el estado de las interfaces) o de un debug.
+Esto es fácilmente solucionable, con una mínima previsión al momento de realizar la configuración. Un modo, no aconsejable, es eliminar sencillamente estos mensajes:
+
+	no logging console
+
+El que quizás es el mejor modo (porque nos permite seguir recibiendo estos mensajes de estado, que son de gran importancia), es sincronizar estoa mensajes con el ingreso de comandos en el prompt del sistema operativo:
+
+CONSOLE
+	line con 0
+	logging synchronous
+AUXILIAR
+	line aux 0
+	logging synchronous
+VTY
+	line vty 0 4
+	logging synchronous
+

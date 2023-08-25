@@ -1,0 +1,9 @@
+
+Dispositivo: Switch
+	enable
+	configure terminal
+	interface vlan [id-vlan]
+	ip address [IP-Address] [Mask]
+	no shutdown
+	exit
+	ip default-gateway [IP-Router]

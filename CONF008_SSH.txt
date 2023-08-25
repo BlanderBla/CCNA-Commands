@@ -1,0 +1,23 @@
+1. Verificar support SSH
+	show ip ssh
+2. Configure el IP domain
+	ip domain-name [domain-name]
+3. Generar un par de claves RSA
+	crypto key generate rsa
+	1024
+4. Configure autenticación de usuarios
+	!Crear usuario y contraseña
+		username [usuario] password [contraseña]
+	!Crear usuario y contraseña segura
+		username [usuario] secret [contraseña]
+	!Crear usuario y contraseña segura con privilegios
+		username [usuario] privilege [15] secret [contraseña]
+5. Configure las lineas vty
+	line vty 0 15
+	transport input ssh
+	login local
+	exit
+6. Habilitar SSH version 2
+	ip ssh version 2
+7. Verificar
+	show ip ssh

@@ -1,0 +1,23 @@
+1. Crear usuario y Contraseña
+	Crear usuario y contraseña
+		username [usuario] password [contraseña]
+	Crear usuario y contraseña segura
+		username [usuario] secret [contraseña]
+	Crear usuario y contraseña segura con privilegios
+		username [usuario] privilege [15] secret [contraseña]
+2. Configurar accesos a lineas vty
+	Para accesos con usuario y contraseña
+		line vty 0 4
+		transport input telnet
+		login local
+	Para acceso con contraseña
+		line vty 0 4
+		transport input telnet
+		password []
+		login
+	Para acceso con contraseña y privilegios
+		line vty 0 4
+		transport input telnet
+		privilege level []
+		password []
+		login

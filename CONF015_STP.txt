@@ -1,0 +1,25 @@
+
+STP — Spanning Tree Protocol
+
+Es un protocolo de red que se utiliza para evitar bucles de red en topologías de red Ethernet. En una red Ethernet, los paquetes de datos se transmiten mediante tramas que contienen direcciones MAC. Si hay varios caminos disponibles entre dos dispositivos, es posible que las tramas se transmitan por diferentes rutas y lleguen a su destino en diferentes momentos, lo que puede resultar en bucles de red y congestión de la red.
+
+STP soluciona este problema seleccionando un camino óptimo para las tramas y bloqueando los demás caminos redundantes. Esto asegura que las tramas se transmitan por el camino más eficiente y evita bucles de red y congestión. STP es un protocolo de capa 2 y es compatible con la mayoría de los dispositivos de red Ethernet. Hay varias versiones de STP, incluyendo Rapid Spanning Tree Protocol (RSTP) y Multiple Spanning Tree Protocol (MSTP), que ofrecen mejoras en la velocidad y eficiencia de la red.
+
+Dispositivo: Switch
+
+enable
+configure terminal
+spanning-tree mode rstp
+spanning-tree vlan [vlan-id] priority [priority]
+spanning-tree vlan [vlan-id] [state {enable | disable}]
+
+
+
+spanning-tree vlan 444 priority 32768
+spanning-tree vlan 111 priority 36864
+Nota:
+	1. Incrementos de 4096.
+	2. Entre más bajo este configurida su prioridad, de mayor prioridad es.
+	3. El valor por default de un switch es: 36768.
+
+show running config | in spanningd

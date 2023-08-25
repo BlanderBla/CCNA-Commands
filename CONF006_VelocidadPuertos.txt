@@ -1,0 +1,18 @@
+Dispositivo: Switch
+	enable
+	configure terminal
+	interface [interface]
+	duplex { half | full }
+	speed [#] Mbps
+	end
+
+
+MDIX — Media Dependent Interface Crossover
+MDIX es una función que permite al dispositivo automáticamente detectar si un cable es recto o cruzado, y configurar su interfaz de red en consecuencia. Es decir, si un dispositivo con MDIX detecta que está conectado a otro dispositivo mediante un cable recto, se configura para cruzar la señal de transmisión y recepción; y si detecta que está conectado mediante un cable cruzado, se configura para no cruzar la señal.
+
+Dispositivo: Switch
+Auto-MDIX (MDIX automático)
+	enable
+	configure terminal
+	interface [interface]
+	mdix auto

@@ -1,0 +1,69 @@
+Modo PAgP — Port Aggregation Protocol**: Es un protocolo propietario de Cisco. El switch negocia con el otro extremo cuales son los puertos que deben ponerse activos. El propio protocolo se encarga de agrupar puertos con características similares (por velocidad, troncales, por pertenecer a una misma VLAN):
+	- Auto. Pone el puerto en modo pasivo, solo responderá paquetes PAgP cuando los reciba y nunca iniciará una negociación. Nota: Dos puertos auto nunca podrán formar grupo, ya que ninguno puede iniciar una negociación.
+	- Desirable. Establece el puerto en modo activo, negociará el estado cuando reciba paquetes PAgP y puede iniciar negociaciones con otros puertos.
+
+Modo LACP — Link Aggregation Control Protocol**: Es un protocolo estandarizado por IEEE 802.3ad y es compatible con otros fabricantes de equipos de red.
+    - Activo. Está habilitado para iniciar negociaciones con otros puertos.
+    - Pasivo. No puede iniciar negociaciones, pero si responde a las negociaciones generadas por otros puertos.
+
+
+
+EtherChannel
+1. PAGP
+[Primer switch]
+	enable
+	configure terminal
+	interface range [range interface]
+	speed [#]
+	duplex { half | full }
+	channel-protocol pagp
+	channel-group [#] mode {desirable | auto}
+	interface port-channel [#]
+	switchport trunk encapsulation dot1q
+	switchport mode trunk
+	switchport trunk allowed vlan [vlan-id-0], ... ,[vlan-id-n]
+[Segundo switch]
+	enable
+	configure terminal
+	interface range [range interface]
+	speed [#]
+	duplex { half | full }
+	channel-protocol pagp
+	channel-group [#] mode {desirable | auto}           // Hasta aqui se configura EtherChannel // Desirable = Active; Auto = Passive
+	interface port-channel [#]
+	switchport trunk encapsulation dot1q
+	switchport mode trunk
+	switchport trunk allowed vlan [vlan-id-0], ... ,[vlan-id-n]
+
+
+2. LACP
+[Primer switch]
+	enable
+	configure terminal
+	interface range [range interface]
+	channel-protocol lacp
+	channel-group [#] mode {active | passive}           // Hasta aqui se configura EtherChannel
+	interface port-channel #
+	switchport trunk encapsulation dot1q
+	switchport mode trunk
+[Segundo switch]
+	enable
+	configure terminal
+	interface range [range interface]
+	channel-protocol lacp
+	channel-group [#] mode {active | passive}             
+	interface port-channel #
+	switchport trunk encapsulation dot1q
+	switchport mode trunk
+
+3. ON
+	enable
+	configure terminal
+	interface range [range interface]
+	channel-group [#] mode on
+
+Verificar informacion de Etherchannel
+show interface brief				(Muestra la informacion del portchanel)
+show etherchannel
+show etherchannel summary		(Muestra las interfaces del portchanel)
+show etherchannel port-channel

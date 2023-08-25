@@ -1,0 +1,41 @@
+Dispositivos: Switch y Router
+
+Nombre de los dispositivos
+	enable
+	configure terminal
+	hostname [device-name]
+
+1. Proteger acceso al modo EXEC del usuario
+			enable
+			configure terminal
+			line console 0
+			password [password]
+			login
+			end
+2. Proteger el acceso al modo EXEC privilegiado
+		enable
+		configure terminal
+		enable secret [password]
+		exit
+3. Proteger las lineas VTY que permiten el acceso remoto mediante SSH o Telnet.
+		enable
+		configure terminal
+		line vty 0 15
+		password [password]
+		login
+		end
+4. Configurar la línea de consola
+		line console 0
+		exec-timeout [minutes] [seconds]
+		logging synchronous
+		length [lineas]
+		history size []
+5. Configurar para mensaje
+	Mensaje para todos los tipos de conexiones
+		banner motd []
+	Mensaje para las conexiones remotas - Inicio de sesión
+		banner login []
+	Mensaje para mostrar un mensaje de texto antes de que se ejecute un comando privilegiado
+		banner  exec []
+	Mensaje cuando se recibe una conexión de red entrante en un dispositivo
+		banner incoming

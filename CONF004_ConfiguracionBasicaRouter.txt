@@ -1,0 +1,8 @@
+Dispositivo: Router
+	enable
+	configure terminal
+	interface [type-and-number]
+	description [description-text]
+	ip address [ipv4-address] [subnet-mask]
+	ipv6 address [ipv6-address/prefix-length]
+	no shutdown

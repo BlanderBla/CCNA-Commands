@@ -1,0 +1,9 @@
+## ¿Qué es una ruta estatica?
+
+Una ruta estática es una entrada en la tabla de enrutamiento de un router que indica una ruta específica a una red o destino determinado.
+
+Las rutas estáticas son útiles en redes pequeñas y estables donde las rutas de red no cambian con frecuencia. También pueden ser útiles para proporcionar una ruta de respaldo en caso de que falle un protocolo de enrutamiento dinámico.
+IPv4:
+	ip route [network] [mask] [next-hop-ip]
+IPv6:
+	ipv6 route [ipv6-prefix] [ ipv6-address | interface-type interface-number [next-hop-ipv6-address] } [administrative-distance] [tag]

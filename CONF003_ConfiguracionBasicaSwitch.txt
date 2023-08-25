@@ -1,0 +1,43 @@
+Dispositivo: Switch
+1. Configuración de la IP
+	enable
+	configure terminal
+	interface vlan 1
+	ip address <dirección_IP> <máscara_de_red>
+	no shutdown
+	exit
+2. Configuración de los puertos
+	enable
+	configure terminal
+	interface [interface]
+	speed [velocidad]
+	duplex {half | full}
+	switchport mode access
+	switchport access vlan [id-vlan]
+	no shutdown
+	exit
+3. Configuración de VLANs
+	enable
+	configure terminal
+	vlan [id_vlan]
+	name [id_name]
+	exit
+4. Configuración de STP
+	enable
+	configure terminal
+	spanning-tree mode rapid-pvst
+	exit
+5. Configuración de seguridad
+	enable
+	configure terminal
+	interface [interface]
+	switchport mode access
+	switchport port-security
+	switchport port-security maximum [#_MAX_MAC_Add]
+	switchport port-security violation restrict
+	exit
+6. Configuración de enrutamiento
+	enable
+	configure terminal
+	ip routing
+	exit

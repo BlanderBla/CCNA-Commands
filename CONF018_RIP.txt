@@ -1,0 +1,23 @@
+¿Qué es RIP?
+
+El Protocolo de Información de Enrutamiento (RIP) es un protocolo de vector distancia que utiliza el conteo de saltos como su métrica principal. RIP define cómo los routers deben compartir información cuando mueven el tráfico entre un grupo interconectado de redes de área local (LAN).
+
+RIP es un protocolo de enrutamiento de vector de distancia, lo que significa que los routers que utilizan RIP comparten información de enrutamiento entre sí mediante la transmisión de tablas de enrutamiento completas. Cada router actualiza su propia tabla de enrutamiento con la información recibida de otros routers y, a continuación, envía su tabla actualizada a los routers vecinos. Este proceso se repite continuamente para asegurarse de que cada router tenga la información de enrutamiento más actualizada.
+
+Metrica: La métrica utilizada por RIP es el número de saltos (hops) que se necesitan para alcanzar una red de destino determinada. Cada vez que un router recibe una actualización de enrutamiento de otro router, compara la métrica asociada a cada ruta con la métrica que tiene actualmente en su propia tabla de enrutamiento. Si la métrica recibida es menor que la que tiene actualmente, el router actualiza su tabla de enrutamiento con la nueva información.
+
+Temporizador: El protocolo RIP también utiliza un temporizador para limitar el número de saltos permitidos en una ruta. Por defecto, RIP utiliza un temporizador de 15 saltos, lo que significa que cualquier ruta que supere ese número de saltos se considerará inaccesible y se eliminará de la tabla de enrutamiento.
+
+Además, RIP utiliza actualizaciones periódicas para compartir información de enrutamiento entre los routers. Por defecto, estas actualizaciones se envían cada 30 segundos. Cada vez que un router envía una actualización de enrutamiento, incluye información sobre todas las redes de destino que conoce y sus correspondientes métricas.
+
+
+Dispositivos: Router | Switch L3
+enable
+configure terminal
+router rip                        // Activa el protocolo de enrutamiento RIP.
+network [network-address]         // Anuncia las redes directamente conectadas que se incluiran en las actualizaciones de enrutamiento RIP.
+pasive-interface [interface-id]   // Desactiva la propagación de actualizaciones de enrutamiento RIP a tráves de una interfaz especifica.
+
+Nota:
+	1. La direccón de red es la dirección de red de cada una de las interfaces del router. 
+	2. Se configuran solo las redes que se quieren dar a conocer.

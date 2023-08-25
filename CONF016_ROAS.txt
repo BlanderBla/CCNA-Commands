@@ -1,0 +1,20 @@
+Dispositivo: Switch
+	interface [interface-id_ConectadoRotuer]
+	switchport trunk encapsulation dot1q
+	switchport mode trunk
+	switchport nonegotiate
+	switchport trunk allowed vlan [all | vlan_1,vlan_2,vlan_3, ..., vlan_n]
+	no shutdown
+
+Dispositivo: Router
+1. Crear subinterfaces para cada VLAN en el puerto del router que esta conectado al switch
+	interface [interface-id_ConecadoRouter].[vlan-id]
+	encapsulation dot1q [vlan-id]
+	ip address [IP Address] [Subnet Mask]
+2. Habilitar la interfaz principal del router
+	interface [interface-id]
+	no shutdown
+3. Verificar la configuración de la subinterfaz
+	show [interfaz-id].[vlan]
+4. Verificar el estado del enrutamiento
+	show ip route
